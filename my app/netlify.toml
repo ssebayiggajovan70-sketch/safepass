@@ -1,0 +1,5 @@
+# SafePass — static site (HTML/CSS/JS). Deploy the folder that contains index.html.
+[build]
+  publish = "."
+
+# Optional: long cache for hashed assets later; default is fine for a small school app.
