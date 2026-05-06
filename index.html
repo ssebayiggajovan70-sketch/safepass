@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="color-scheme" content="light"/>
+  <meta name="theme-color" content="#1d3557"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>vayns – School Pickup Security System</title>
+  <meta name="description" content="Secure student pickup identification system for schools. QR-based verification of authorized pickup persons."/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="login-page">
+
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+
+  <div class="login-container" id="loginContainer">
+    <div class="login-header">
+      <div class="school-logo-wrap">
+        <img src="assets/logo.png" alt="School Logo" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='flex'"/>
+        <div class="logo-fallback" id="logoFallback">
+          <i class="fas fa-shield-halved"></i>
+        </div>
+      </div>
+      <h1 class="login-title">SafePass</h1>
+      <p class="login-subtitle">School Pickup Security System</p>
+      <div class="security-badge">
+        <i class="fas fa-lock"></i>
+        <span>Secured Portal</span>
+      </div>
+    </div>
+
+    <form class="login-form" id="loginForm" autocomplete="off">
+      <div class="form-group">
+        <label for="adminUsername"><i class="fas fa-user-shield"></i> Admin Username</label>
+        <div class="input-wrap">
+          <input type="text" id="adminUsername" placeholder="Enter username" autocomplete="off" required/>
+          <span class="input-icon"><i class="fas fa-user"></i></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="adminPassword"><i class="fas fa-key"></i> Password</label>
+        <div class="input-wrap">
+          <input type="password" id="adminPassword" placeholder="Enter password" autocomplete="off" required/>
+          <span class="input-icon toggle-pw" onclick="togglePassword()">
+            <i class="fas fa-eye-slash" id="pwIcon"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="lock-warning" id="lockWarning" style="display:none">
+        <i class="fas fa-ban"></i>
+        <span id="lockMsg">Too many failed attempts. Try again in <b id="lockCountdown">30</b>s.</span>
+      </div>
+
+      <div class="login-error" id="loginError" style="display:none">
+        <i class="fas fa-triangle-exclamation"></i>
+        <span id="loginErrMsg">Invalid credentials.</span>
+      </div>
+
+      <div class="attempt-dots" id="attemptDots">
+        <span class="dot" id="dot1"></span>
+        <span class="dot" id="dot2"></span>
+        <span class="dot" id="dot3"></span>
+      </div>
+
+      <button type="submit" class="btn-login" id="loginBtn">
+        <span id="loginBtnText"><i class="fas fa-right-to-bracket"></i> Sign In</span>
+        <span id="loginSpinner" style="display:none"><i class="fas fa-circle-notch fa-spin"></i> Verifying...</span>
+      </button>
+
+      <div class="login-footnote">
+        <i class="fas fa-circle-info"></i>
+        Default: <code>admin</code> / <code>safepass123</code>
+      </div>
+    </form>
+
+    <div class="login-footer">
+      <i class="fas fa-shield-halved"></i> @vayns  v2.0 &nbsp;|&nbsp; All rights reserved &copy; 2026
+    </div>
+  </div>
+
+  <!-- Config + app: Firebase loads inside initFirebase() on dashboard / verify / card (single SDK version 10.12.2) -->
+  <script src="firebase-config.js"></script>
+  <script src="script.js"></script>
+  <script>
+    initLoginPage();
+  </script>
+</body>
+</html>

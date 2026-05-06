@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="light"/>
+    <meta name="theme-color" content="#1d3557"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafePass – Child Verification</title>
+    <meta name="description"
+        content="Secure child pickup verification page. Scan QR to verify authorized pickup person." />
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="stylesheet" href="style.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body class="verify-page">
+
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
+    <div class="verify-container" id="verifyContainer">
+
+        <!-- Header bar -->
+        <div class="verify-topbar">
+            <div class="verify-logo">
+                <i class="fas fa-shield-halved"></i>
+                <span>SafePass</span>
+            </div>
+            <div class="verify-status-pill" id="verifyStatusPill">
+                <i class="fas fa-circle-notch fa-spin"></i> Loading...
+            </div>
+        </div>
+
+        <!-- Main verification content -->
+        <div id="verifyContent">
+            <div class="verify-loading" id="verifyLoading">
+                <i class="fas fa-circle-notch fa-spin fa-2x"></i>
+                <p>Verifying student record...</p>
+            </div>
+        </div>
+
+        <!-- Pickup confirmation modal (inline) -->
+        <div class="pickup-confirm-overlay" id="pickupConfirmOverlay" style="display:none">
+            <div class="pickup-confirm-modal glass-modal">
+                <div class="modal-icon success-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <h3>Confirm Pickup</h3>
+                <p id="pickupConfirmText">Are you sure you want to confirm pickup for this child?</p>
+                <div class="confirmation-checklist" id="confirmChecklist"></div>
+                <div class="modal-actions">
+                    <button class="btn-secondary" onclick="cancelPickup()"><i class="fas fa-xmark"></i> Cancel</button>
+                    <button class="btn-confirm" onclick="finalizePickup()"><i class="fas fa-check"></i> Confirm
+                        Pickup</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unauthorized modal -->
+        <div class="unauthorized-overlay" id="unauthorizedOverlay" style="display:none">
+            <div class="unauthorized-modal">
+                <div class="unauth-icon"><i class="fas fa-ban"></i></div>
+                <h2>UNAUTHORIZED ACCESS</h2>
+                <h3>CHILD CANNOT BE RELEASED</h3>
+                <p id="unauthorizedMsg">The person presenting this card is not found in the authorized pickup list.</p>
+                <div class="unauth-timestamp" id="unauthorizedTimestamp"></div>
+                <div class="unauth-log-note"><i class="fas fa-triangle-exclamation"></i> This attempt has been logged
+                    and reported.</div>
+                <button class="btn-unauth-close" onclick="closeUnauthorized()"><i class="fas fa-xmark"></i>
+                    Close</button>
+            </div>
+        </div>
+
+        <!-- Verify page footer -->
+        <div class="verify-footer">
+            <i class="fas fa-lock"></i> SafePass Secure System &copy; 2026 &nbsp;|&nbsp; Powered by school
+            administration
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+    <script>
+        initVerifyPage();
+    </script>
+</body>
+
+</html>
